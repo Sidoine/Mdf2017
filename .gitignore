@@ -1,0 +1,6 @@
+.vs
+_NCrunch_ConsoleApp1
+*.ncrunchsolution
+*.user
+obj
+*.ncrunchproject
