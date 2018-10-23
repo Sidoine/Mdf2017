@@ -1,7 +1,7 @@
+using ConsoleApp1;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using ConsoleApp1;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -26,11 +26,9 @@ namespace XUnitTestProject1
             var file = File.ReadAllText(input);
             Console.SetIn(new StringReader(file));
             Kayak.MyMain(null);
-            
-            testOutputHelper.WriteLine(TestTools.OutputGrid(Kayak.Cases));
-            testOutputHelper.WriteLine(TestTools.OutputGrid(Kayak.Value));
-
+        
             var expected = File.ReadAllText(output);
+            if (!expected.EndsWith("\r\n")) expected = expected + "\r\n";
             Assert.Equal(expected, textWriter.ToString());
         }
 
@@ -42,6 +40,5 @@ namespace XUnitTestProject1
                 yield return new object[] { dir, dir.Replace("input", "output") };
             }
         }
-
     }
 }

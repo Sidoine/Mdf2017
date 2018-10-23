@@ -7,11 +7,11 @@ using Xunit.Abstractions;
 
 namespace XUnitTestProject1
 {
-    public class DemineurTest
+    public class PoteauxTest
     {
         private readonly ITestOutputHelper testOutputHelper;
 
-        public DemineurTest(ITestOutputHelper testOutputHelper)
+        public PoteauxTest(ITestOutputHelper testOutputHelper)
         {
             this.testOutputHelper = testOutputHelper;
         }
@@ -25,7 +25,7 @@ namespace XUnitTestProject1
             Console.SetOut(textWriter);
             var file = File.ReadAllText(input);
             Console.SetIn(new StringReader(file));
-            Demineur.MyMain(null);
+            Poteaux.MyMain(null);
         
             var expected = File.ReadAllText(output);
             if (!expected.EndsWith("\r\n")) expected = expected + "\r\n";
@@ -34,7 +34,7 @@ namespace XUnitTestProject1
 
         public static IEnumerable<object[]> GetFileNames()
         {
-            var directory = Directory.EnumerateFiles(@"..\..\..\files\demineur", "input*.*");
+            var directory = Directory.EnumerateFiles(@"..\..\..\files\poteaux", "input*.*");
             foreach (var dir in directory)
             {
                 yield return new object[] { dir, dir.Replace("input", "output") };

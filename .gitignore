@@ -4,3 +4,5 @@ _NCrunch_ConsoleApp1
 *.user
 obj
 *.ncrunchproject
+
+/ConsoleApp1/bin

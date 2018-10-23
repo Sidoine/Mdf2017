@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ConsoleApp1
+{
+    public class Salon
+    {
+        public class Taureau
+        {
+            public string Name { get; set; }
+            public int Age { get; set; }
+            public int Weight { get; set; }
+            public int Demarche { get; set; }
+            public int Courbure { get; set; }
+            public int Mean { get; set; }
+        }
+
+        public static void MyMain(string[] args)
+        {
+            var nbTaureaux = int.Parse(Console.ReadLine());
+            var taureaux = new List<Taureau>();
+            for (var i = 0; i < nbTaureaux; i++)
+            {
+                var line = Console.ReadLine().Split(' ');
+                var taureau = new Taureau
+                {
+                    Name = line[0],
+                    Age = int.Parse(line[1]),
+                    Weight = int.Parse(line[2]),
+                    Demarche = int.Parse(line[3]),
+                    Courbure = int.Parse(line[4])
+                };
+                if (taureau.Age >= 2 && taureau.Age <= 5 && taureau.Weight >= 1250 && taureau.Weight <= 1500)
+                {
+
+                    taureau.Mean = taureau.Demarche + taureau.Courbure;
+                    taureaux.Add(taureau);
+                }
+            }
+
+            var sort = taureaux.OrderByDescending(x => x.Mean).ThenBy(x => x.Name).ToArray();
+            var max = sort[0].Mean;
+            Console.WriteLine(string.Join(" ", sort.Where(x => x.Mean == max).Select(x => x.Name)));
+        }
+    }
+}

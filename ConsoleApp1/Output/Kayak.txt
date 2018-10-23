@@ -1,13 +1,13 @@
-﻿using System;
+using System;
 
 namespace ConsoleApp1
 {
-    public class Kayak
+    public class Program
     {
         private static Libs.CharMatrix cases { get; set; } = new Libs.CharMatrix();
         private static Libs.IntMatrix values { get; set; } = new Libs.IntMatrix();
 
-        public static void MyMain(string[] args)
+        public static void Main(string[] args)
         {
             cases.ReadSquareSize();
             values.SetSize(cases.Width, cases.Height);
