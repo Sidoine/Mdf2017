@@ -21,7 +21,7 @@ namespace ConsoleApp1
                 }
             }
 
-            Console.Write(values.Get(values.Width- 1, values.Height-1));
+            Console.WriteLine(values.Get(values.Width- 1, values.Height-1));
         }
 
         private static void Paint(int x, int y)

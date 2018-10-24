@@ -26,7 +26,7 @@ namespace ConsoleApp1
                 solution.Add(first);
                 solution.Add(last);
             }
-            Console.WriteLine(string.Join(" ",solution.Select(x => x.ToString())));
+            Console.WriteLine(string.Join("\n",solution.Select(x => x.ToString())));
         }
     }
 }

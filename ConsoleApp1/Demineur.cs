@@ -32,7 +32,7 @@ namespace ConsoleApp1
             }
 
             int count = Devoiler(mineX, mineY);
-            Console.Write(count);
+            Console.WriteLine(count);
         }
 
         private static int Devoiler(int mineX, int mineY)

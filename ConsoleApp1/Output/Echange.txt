@@ -1,0 +1,60 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+
+namespace ConsoleApp1
+{
+    public class Program
+    {
+        private static double[][] conversion;
+        private static double[][] bests;
+        public static void Main(string[] args)
+        {
+            var line = Console.ReadLine().Split(' ');
+            var nbDevises = int.Parse(line[0]);
+            var maxPrograms = int.Parse(line[1]);
+            conversion = new double[nbDevises][];
+            for (var i = 0; i < nbDevises; i++)
+            {
+                var readLine = Console.ReadLine();
+                var l = readLine.Split(' ').Select(x => double.Parse(x, CultureInfo.InvariantCulture.NumberFormat)).ToArray();
+                conversion[i] = l;
+            }
+
+            var value = 10000;
+            var devise = 0;
+            bests = new double[nbDevises][];
+            for (var i = 0; i < bests.Length; i++)
+            {
+                bests[i] = new double[maxPrograms + 1];
+            }
+            var best = GetProgram(devise, value, maxPrograms);
+            Console.WriteLine(best.ToString(CultureInfo.InvariantCulture.NumberFormat));
+        }
+
+        public static double GetProgram(int devise, double value, int maxPrograms)
+        {
+            if (bests[devise][maxPrograms] > value) return 0;
+            bests[devise][maxPrograms] = value;
+            if (maxPrograms == 1)
+            {
+                var result = value * conversion[devise][0];
+                return result;
+            }
+            var best = 0.0;
+            for (var i = 0; i < conversion.Length; i++)
+            {
+                var newValue = value * conversion[devise][i];
+                
+                var result = GetProgram(i, newValue, maxPrograms - 1);
+                if (result > best)
+                {
+                    best = result;
+                }
+            }
+
+            return best;
+        }
+    }
+}

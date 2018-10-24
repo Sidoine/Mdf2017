@@ -42,9 +42,10 @@ namespace XUnitTestProject1
             Console.SetIn(new StringReader(file));
             {className}.MyMain(null);
         
-            var expected = File.ReadAllText(output);
-            if (!expected.EndsWith(""\r\n"")) expected = expected + ""\r\n"";
-            Assert.Equal(expected, textWriter.ToString());
+            var expected = File.ReadAllText(output).Replace(""\r\n"", ""\n"");
+            if (!expected.EndsWith(""\n"")) expected = expected + ""\n"";
+            var actual = textWriter.ToString().Replace(""\r\n"", ""\n"");
+            Assert.Equal(expected, actual);
         }}
 
         public static IEnumerable<object[]> GetFileNames()
